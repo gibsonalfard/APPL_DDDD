@@ -5,8 +5,7 @@
  */
 package com.appl.atm.model;
 
-import com.appl.atm.view.Keypad;
-import com.appl.atm.view.Screen;
+import static com.appl.atm.model.Constants.*;
 
 /**
  *
@@ -15,28 +14,25 @@ import com.appl.atm.view.Screen;
 public class Deposit extends Transaction {
 
     private double amount; // amount to deposit
-    private Keypad keypad; // reference to keypad
     private DepositSlot depositSlot; // reference to deposit slot
 
     // Deposit constructor
-    public Deposit(int userAccountNumber, Screen atmScreen,
-	    BankDatabase atmBankDatabase, Keypad atmKeypad,
+    public Deposit(int userAccountNumber, BankDatabase atmBankDatabase,
 	    DepositSlot atmDepositSlot) {
 
 	// initialize superclass variables
-<span class="fc" id="L27">	super(userAccountNumber, atmScreen, atmBankDatabase);</span>
-<span class="fc" id="L28">	keypad = atmKeypad;</span>
-<span class="fc" id="L29">	depositSlot = atmDepositSlot;</span>
-<span class="fc" id="L30">    }</span>
+<span class="fc" id="L24">	super(userAccountNumber, atmBankDatabase);</span>
+<span class="fc" id="L25">	depositSlot = atmDepositSlot;</span>
+<span class="fc" id="L26">    }</span>
 
     @Override
     public int execute() {
-<span class="pc bpc" id="L34" title="1 of 2 branches missed.">	if (depositSlot.isEnvelopeReceived()) {</span>
-<span class="fc" id="L35">	    Account account = getBankDatabase().getAccount(getAccountNumber());</span>
-<span class="fc" id="L36">	    account.credit(amount);</span>
-<span class="fc" id="L37">	    return 0;</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">	if (depositSlot.isEnvelopeReceived()) {</span>
+<span class="fc" id="L31">	    Account account = getBankDatabase().getAccount(getAccountNumber());</span>
+<span class="fc" id="L32">	    account.credit(amount);</span>
+<span class="fc" id="L33">	    return DEPOSIT_SUCCESSFUL;</span>
 	} else {
-<span class="nc" id="L39">	    return 1;</span>
+<span class="nc" id="L35">	    return ENVELOPE_IS_NOT_RECEIVED;</span>
 	}
     }
 
@@ -44,42 +40,28 @@ public class Deposit extends Transaction {
      * @return the amount
      */
     public double getAmount() {
-<span class="nc" id="L47">	return amount;</span>
+<span class="nc" id="L43">	return amount;</span>
     }
 
     /**
      * @param amount the amount to set
      */
     public void setAmount(double amount) {
-<span class="fc" id="L54">	this.amount = amount;</span>
-<span class="fc" id="L55">    }</span>
-
-    /**
-     * @return the keypad
-     */
-    public Keypad getKeypad() {
-<span class="fc" id="L61">	return keypad;</span>
-    }
-
-    /**
-     * @param keypad the keypad to set
-     */
-    public void setKeypad(Keypad keypad) {
-<span class="nc" id="L68">	this.keypad = keypad;</span>
-<span class="nc" id="L69">    }</span>
+<span class="fc" id="L50">	this.amount = amount;</span>
+<span class="fc" id="L51">    }</span>
 
     /**
      * @return the depositSlot
      */
     public DepositSlot getDepositSlot() {
-<span class="nc" id="L75">	return depositSlot;</span>
+<span class="nc" id="L57">	return depositSlot;</span>
     }
 
     /**
      * @param depositSlot the depositSlot to set
      */
     public void setDepositSlot(DepositSlot depositSlot) {
-<span class="nc" id="L82">	this.depositSlot = depositSlot;</span>
-<span class="nc" id="L83">    }</span>
+<span class="nc" id="L64">	this.depositSlot = depositSlot;</span>
+<span class="nc" id="L65">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

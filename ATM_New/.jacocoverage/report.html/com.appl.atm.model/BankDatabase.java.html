@@ -17,39 +17,38 @@ public class BankDatabase {
     
 <span class="fc" id="L18">    public BankDatabase() {</span>
 <span class="fc" id="L19">        accounts = new ArrayList&lt;Account&gt;();</span>
-<span class="fc" id="L20">	accounts.add(new Account(00000, 00000, 0.0, 0.0));</span>
-<span class="fc" id="L21">	accounts.add(new Account(1234, 4321, 1000.0, 1200.0));</span>
-<span class="fc" id="L22">	accounts.add(new Account(8765, 5678, 200.0, 200.0));</span>
-<span class="fc" id="L23">    }</span>
+<span class="fc" id="L20">	accounts.add(new Account(1234, 4321, 1000.0, 1200.0));</span>
+<span class="fc" id="L21">	accounts.add(new Account(8765, 5678, 200.0, 200.0));</span>
+<span class="fc" id="L22">    }</span>
     
     public Account getAccount(int accountNumber) {
 	int i;
-<span class="pc bpc" id="L27" title="1 of 2 branches missed.">        for (i = 0; i &lt; accounts.size(); i++) {</span>
-<span class="fc bfc" id="L28" title="All 2 branches covered.">            if (accounts.get(i).getAccountNumber() == accountNumber) {</span>
-<span class="fc" id="L29">                return accounts.get(i);</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        for (i = 0; i &lt; accounts.size(); i++) {</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            if (accounts.get(i).getAccountNumber() == accountNumber) {</span>
+<span class="fc" id="L28">                return accounts.get(i);</span>
             }
         } 
-<span class="nc" id="L32">        return null; // if no matching account was found, return null</span>
+<span class="fc" id="L31">        return null; // if no matching account was found, return null</span>
     }
     
     public int authenticateUser(int userAccountNumber, int userPIN)
     {
-<span class="fc" id="L37">	Account userAccount = getAccount(userAccountNumber);</span>
+<span class="fc" id="L36">	Account userAccount = getAccount(userAccountNumber);</span>
 	
-<span class="pc bpc" id="L39" title="1 of 2 branches missed.">	if(userAccount != null)</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">	if(userAccount != null)</span>
 	{
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">	    if(userAccount.getPin() == userPIN)</span>
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">	    if(userAccount.getPin() == userPIN)</span>
 	    {
-<span class="fc" id="L43">		return 1;</span>
+<span class="fc" id="L42">		return 1;</span>
 	    }
 	    else
 	    {
-<span class="nc" id="L47">		return 2;</span>
+<span class="nc" id="L46">		return 2;</span>
 	    }
 	}
 	else
 	{
-<span class="nc" id="L52">	    return 2;</span>
+<span class="fc" id="L51">	    return 2;</span>
 	}
     }
    

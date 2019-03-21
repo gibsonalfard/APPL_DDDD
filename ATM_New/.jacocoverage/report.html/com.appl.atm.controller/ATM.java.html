@@ -99,7 +99,7 @@ public class ATM {
 <span class="fc" id="L99">		    currentTransaction</span>
 <span class="fc" id="L100">			    = createTransaction(mainMenuSelection);</span>
 <span class="fc" id="L101">		    currentTransactionController</span>
-			    = new BalanceInquiryController(currentTransaction);
+			    = new BalanceInquiryController(currentTransaction, keypad, screen);
 <span class="fc" id="L103">		    currentTransactionController.run(); // execute transaction</span>
 <span class="fc" id="L104">		    break;</span>
 		    
@@ -107,7 +107,7 @@ public class ATM {
 <span class="fc" id="L107">		    currentTransaction</span>
 <span class="fc" id="L108">			    = createTransaction(mainMenuSelection);</span>
 <span class="fc" id="L109">		    currentTransactionController</span>
-			    = new WithdrawalController(currentTransaction);
+			    = new WithdrawalController(currentTransaction, keypad, screen);
 <span class="fc" id="L111">		    currentTransactionController.run(); // execute transaction</span>
 <span class="fc" id="L112">		    break;</span>
 		    
@@ -115,7 +115,7 @@ public class ATM {
 <span class="fc" id="L115">		    currentTransaction</span>
 <span class="fc" id="L116">			    = createTransaction(mainMenuSelection);</span>
 <span class="fc" id="L117">		    currentTransactionController</span>
-			    = new DepositController(currentTransaction);
+			    = new DepositController(currentTransaction, keypad, screen);
 <span class="fc" id="L119">		    currentTransactionController.run(); // execute transaction</span>
 <span class="fc" id="L120">		    break;</span>
 		    
@@ -149,15 +149,15 @@ public class ATM {
 <span class="pc bpc" id="L149" title="1 of 4 branches missed.">	switch (type) {</span>
 	    case BALANCE_INQUIRY:
 <span class="fc" id="L151">		temp = new BalanceInquiry(</span>
-			currentAccountNumber, screen, bankDatabase);
+			currentAccountNumber, bankDatabase);
 <span class="fc" id="L153">		break;</span>
 	    case WITHDRAWAL:
 <span class="fc" id="L155">		temp = new Withdrawal(</span>
-			currentAccountNumber, screen, bankDatabase, keypad, cashDispenser);
+			currentAccountNumber, bankDatabase, cashDispenser);
 <span class="fc" id="L157">		break;</span>
 	    case DEPOSIT:
 <span class="fc" id="L159">		temp = new Deposit(</span>
-			currentAccountNumber, screen, bankDatabase, keypad, depositSlot);
+			currentAccountNumber, bankDatabase, depositSlot);
 		break;
 	}
 

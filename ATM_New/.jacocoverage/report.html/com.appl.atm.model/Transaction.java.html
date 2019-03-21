@@ -5,22 +5,18 @@
  */
 package com.appl.atm.model;
 
-import com.appl.atm.view.Screen;
-
 /**
  *
  * @author Annazar
  */
 public abstract class Transaction {
     private int accountNumber; // indicates account involved
-    private Screen screen; // ATM screen
     private BankDatabase bankDatabase; // account database
     
-<span class="fc" id="L19">    public Transaction(int userAccountNumber, Screen atmScreen, BankDatabase atmBankDatabase) {</span>
-<span class="fc" id="L20">        accountNumber = userAccountNumber;</span>
-<span class="fc" id="L21">        screen = atmScreen;</span>
-<span class="fc" id="L22">        bankDatabase = atmBankDatabase;</span>
-<span class="fc" id="L23">    }</span>
+<span class="fc" id="L16">    public Transaction(int userAccountNumber, BankDatabase atmBankDatabase) {</span>
+<span class="fc" id="L17">        accountNumber = userAccountNumber;</span>
+<span class="fc" id="L18">        bankDatabase = atmBankDatabase;</span>
+<span class="fc" id="L19">    }</span>
     
     public abstract int execute();
 
@@ -28,42 +24,28 @@ public abstract class Transaction {
      * @return the accountNumber
      */
     public int getAccountNumber() {
-<span class="fc" id="L31">        return accountNumber;</span>
+<span class="fc" id="L27">        return accountNumber;</span>
     }
 
     /**
      * @param accountNumber the accountNumber to set
      */
     public void setAccountNumber(int accountNumber) {
-<span class="nc" id="L38">        this.accountNumber = accountNumber;</span>
-<span class="nc" id="L39">    }</span>
-
-    /**
-     * @return the screen
-     */
-    public Screen getScreen() {
-<span class="fc" id="L45">        return screen;</span>
-    }
-
-    /**
-     * @param screen the screen to set
-     */
-    public void setScreen(Screen screen) {
-<span class="nc" id="L52">        this.screen = screen;</span>
-<span class="nc" id="L53">    }</span>
+<span class="nc" id="L34">        this.accountNumber = accountNumber;</span>
+<span class="nc" id="L35">    }</span>
 
     /**
      * @return the bankDatabase
      */
     public BankDatabase getBankDatabase() {
-<span class="fc" id="L59">        return bankDatabase;</span>
+<span class="fc" id="L41">        return bankDatabase;</span>
     }
 
     /**
      * @param bankDatabase the bankDatabase to set
      */
     public void setBankDatabase(BankDatabase bankDatabase) {
-<span class="nc" id="L66">        this.bankDatabase = bankDatabase;</span>
-<span class="nc" id="L67">    }</span>
+<span class="nc" id="L48">        this.bankDatabase = bankDatabase;</span>
+<span class="nc" id="L49">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
