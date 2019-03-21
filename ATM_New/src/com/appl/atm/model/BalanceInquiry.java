@@ -5,22 +5,27 @@
  */
 package com.appl.atm.model;
 
-import com.appl.atm.view.Screen;
-
 /**
  *
  * @author Annazar
  */
 public class BalanceInquiry extends Transaction {
     // BalanceInquiry constructor
-    public BalanceInquiry(int userAccountNumber, Screen atmScreen, 
-	BankDatabase atmBankDatabase) {
+    public BalanceInquiry(int userAccountNumber, BankDatabase atmBankDatabase) {
 
-	super(userAccountNumber, atmScreen, atmBankDatabase);
+	super(userAccountNumber, atmBankDatabase);
     } 
 
     @Override
     public int execute() {
 	return 0;
+    }
+    
+    public double getAvailableBalance() {
+	return getBankDatabase().getAccount(getAccountNumber()).getAvailableBalance();
+    }
+    
+    public double getTotalBalance() {
+	return getBankDatabase().getAccount(getAccountNumber()).getTotalBalance();
     }
 }

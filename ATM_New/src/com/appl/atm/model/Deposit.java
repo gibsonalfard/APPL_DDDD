@@ -5,8 +5,7 @@
  */
 package com.appl.atm.model;
 
-import com.appl.atm.view.Keypad;
-import com.appl.atm.view.Screen;
+import static com.appl.atm.model.Constants.*;
 
 /**
  *
@@ -15,17 +14,14 @@ import com.appl.atm.view.Screen;
 public class Deposit extends Transaction {
 
     private double amount; // amount to deposit
-    private Keypad keypad; // reference to keypad
     private DepositSlot depositSlot; // reference to deposit slot
 
     // Deposit constructor
-    public Deposit(int userAccountNumber, Screen atmScreen,
-	    BankDatabase atmBankDatabase, Keypad atmKeypad,
+    public Deposit(int userAccountNumber, BankDatabase atmBankDatabase,
 	    DepositSlot atmDepositSlot) {
 
 	// initialize superclass variables
-	super(userAccountNumber, atmScreen, atmBankDatabase);
-	keypad = atmKeypad;
+	super(userAccountNumber, atmBankDatabase);
 	depositSlot = atmDepositSlot;
     }
 
@@ -34,9 +30,9 @@ public class Deposit extends Transaction {
 	if (depositSlot.isEnvelopeReceived()) {
 	    Account account = getBankDatabase().getAccount(getAccountNumber());
 	    account.credit(amount);
-	    return 0;
+	    return DEPOSIT_SUCCESSFUL;
 	} else {
-	    return 1;
+	    return ENVELOPE_IS_NOT_RECEIVED;
 	}
     }
 
@@ -52,20 +48,6 @@ public class Deposit extends Transaction {
      */
     public void setAmount(double amount) {
 	this.amount = amount;
-    }
-
-    /**
-     * @return the keypad
-     */
-    public Keypad getKeypad() {
-	return keypad;
-    }
-
-    /**
-     * @param keypad the keypad to set
-     */
-    public void setKeypad(Keypad keypad) {
-	this.keypad = keypad;
     }
 
     /**

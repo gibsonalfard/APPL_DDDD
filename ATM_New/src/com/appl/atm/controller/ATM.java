@@ -99,7 +99,7 @@ public class ATM {
 		    currentTransaction
 			    = createTransaction(mainMenuSelection);
 		    currentTransactionController
-			    = new BalanceInquiryController(currentTransaction);
+			    = new BalanceInquiryController(currentTransaction, keypad, screen);
 		    currentTransactionController.run(); // execute transaction
 		    break;
 		    
@@ -107,7 +107,7 @@ public class ATM {
 		    currentTransaction
 			    = createTransaction(mainMenuSelection);
 		    currentTransactionController
-			    = new WithdrawalController(currentTransaction);
+			    = new WithdrawalController(currentTransaction, keypad, screen);
 		    currentTransactionController.run(); // execute transaction
 		    break;
 		    
@@ -115,7 +115,7 @@ public class ATM {
 		    currentTransaction
 			    = createTransaction(mainMenuSelection);
 		    currentTransactionController
-			    = new DepositController(currentTransaction);
+			    = new DepositController(currentTransaction, keypad, screen);
 		    currentTransactionController.run(); // execute transaction
 		    break;
 		    
@@ -149,15 +149,15 @@ public class ATM {
 	switch (type) {
 	    case BALANCE_INQUIRY:
 		temp = new BalanceInquiry(
-			currentAccountNumber, screen, bankDatabase);
+			currentAccountNumber, bankDatabase);
 		break;
 	    case WITHDRAWAL:
 		temp = new Withdrawal(
-			currentAccountNumber, screen, bankDatabase, keypad, cashDispenser);
+			currentAccountNumber, bankDatabase, cashDispenser);
 		break;
 	    case DEPOSIT:
 		temp = new Deposit(
-			currentAccountNumber, screen, bankDatabase, keypad, depositSlot);
+			currentAccountNumber, bankDatabase, depositSlot);
 		break;
 	}
 

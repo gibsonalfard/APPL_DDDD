@@ -5,10 +5,8 @@
  */
 package com.appl.atm.controller;
 
-import com.appl.atm.model.BankDatabase;
 import static com.appl.atm.model.Constants.*;
 import com.appl.atm.model.Deposit;
-import com.appl.atm.model.DepositSlot;
 import com.appl.atm.model.Transaction;
 import com.appl.atm.view.Keypad;
 import com.appl.atm.view.Screen;
@@ -21,18 +19,17 @@ public class DepositController extends TransactionController {
 
     private Deposit transaction;
 
-    public DepositController(Transaction theTransaction) {
-	super(theTransaction);
-	transaction = (Deposit) getTransaction();
+    public DepositController(Transaction theTransaction, Keypad theKeypad, Screen theScreen) {
+	super(theKeypad, theScreen);
+	transaction = (Deposit) theTransaction;
     }
 
     @Override
     public int run() {
 	double amount = promptForDepositAmount();
 
-	if (amount == 0) {
+	if (amount == DEPOSIT_CANCELED) {
 	    getScreen().displayMessageLine("Canceling transaction...");
-	    return 1;
 	} else {
 	    transaction.setAmount(amount);
 	    transaction.execute();
@@ -41,8 +38,9 @@ public class DepositController extends TransactionController {
 	    getScreen().displayMessageLine("\n");
 	    getScreen().displayMessageLine("Your envelope has been received.");
 	    getScreen().displayMessageLine("NOTE: The money just deposited will not be available until we verify the amount of any enclosed cash and your checks clear.");
-	    return 0;
 	}
+	
+	return 0;
     }
 
     // prompt user to enter a deposit amount in cents 
@@ -62,23 +60,4 @@ public class DepositController extends TransactionController {
 	}
     }
 
-    private int getAccountNumber() {
-	return transaction.getAccountNumber();
-    }
-
-    private Screen getScreen() {
-	return transaction.getScreen();
-    }
-
-    private BankDatabase getBankDatabase() {
-	return transaction.getBankDatabase();
-    }
-
-    private Keypad getKeypad() {
-	return transaction.getKeypad();
-    }
-
-    private DepositSlot getDepositSlot() {
-	return transaction.getDepositSlot();
-    }
 }

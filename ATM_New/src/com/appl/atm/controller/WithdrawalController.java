@@ -5,8 +5,6 @@
  */
 package com.appl.atm.controller;
 
-import com.appl.atm.model.BankDatabase;
-import com.appl.atm.model.CashDispenser;
 import static com.appl.atm.model.Constants.*;
 import com.appl.atm.model.Transaction;
 import com.appl.atm.model.Withdrawal;
@@ -21,10 +19,11 @@ public class WithdrawalController extends TransactionController {
 
     private Withdrawal transaction;
 
-    public WithdrawalController(Transaction theTransaction) {
-	super(theTransaction);
-	transaction = (Withdrawal) getTransaction();
+    public WithdrawalController(Transaction theTransaction, Keypad theKeypad, Screen theScreen) {
+	super(theKeypad, theScreen);
+	transaction = (Withdrawal) theTransaction;
     }
+
 
     @Override
     public int run() {
@@ -34,11 +33,11 @@ public class WithdrawalController extends TransactionController {
 	    transaction.setAmount(amount);
 	    int res = transaction.execute();
 
-	    if (res == 0) {
+	    if (res == WITHDRAW_SUCCESSFUL) {
 		getScreen().displayMessageLine("Your cash has been dispensed. Please take your cash now.");
-	    } else if (res == 1) {
+	    } else if (res == BALANCE_NOT_ENOUGH) {
 		getScreen().displayMessageLine("Your balance isn't enough for this withdrawal.");
-	    } else if (res == 2) {
+	    } else if (res == CASHDISPENSER_NOT_ENOUGH) {
 		getScreen().displayMessageLine("Cash dispenser doesn't have sufficient amount of cash.");
 	    }
 	}
@@ -88,25 +87,5 @@ public class WithdrawalController extends TransactionController {
 	}
 
 	return userChoice; // return withdrawal amount or CANCELED
-    }
-
-    private int getAccountNumber() {
-	return transaction.getAccountNumber();
-    }
-
-    private Screen getScreen() {
-	return transaction.getScreen();
-    }
-
-    private BankDatabase getBankDatabase() {
-	return transaction.getBankDatabase();
-    }
-
-    private Keypad getKeypad() {
-	return transaction.getKeypad();
-    }
-    
-    private CashDispenser getCashDispenser() {
-	return transaction.getCashDispenser();
     }
 }

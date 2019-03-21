@@ -5,20 +5,16 @@
  */
 package com.appl.atm.model;
 
-import com.appl.atm.view.Screen;
-
 /**
  *
  * @author Annazar
  */
 public abstract class Transaction {
     private int accountNumber; // indicates account involved
-    private Screen screen; // ATM screen
     private BankDatabase bankDatabase; // account database
     
-    public Transaction(int userAccountNumber, Screen atmScreen, BankDatabase atmBankDatabase) {
+    public Transaction(int userAccountNumber, BankDatabase atmBankDatabase) {
         accountNumber = userAccountNumber;
-        screen = atmScreen;
         bankDatabase = atmBankDatabase;
     }
     
@@ -36,20 +32,6 @@ public abstract class Transaction {
      */
     public void setAccountNumber(int accountNumber) {
         this.accountNumber = accountNumber;
-    }
-
-    /**
-     * @return the screen
-     */
-    public Screen getScreen() {
-        return screen;
-    }
-
-    /**
-     * @param screen the screen to set
-     */
-    public void setScreen(Screen screen) {
-        this.screen = screen;
     }
 
     /**

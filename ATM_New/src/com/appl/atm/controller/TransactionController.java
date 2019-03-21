@@ -6,33 +6,37 @@
 package com.appl.atm.controller;
 
 import com.appl.atm.model.Transaction;
+import com.appl.atm.view.Keypad;
+import com.appl.atm.view.Screen;
 
 /**
  *
  * @author Annazar
  */
 public abstract class TransactionController {
-    private Transaction transaction;
-    
-    public TransactionController(Transaction theTransaction)
-    {
-	transaction = theTransaction;
+
+    private Keypad keypad;
+    private Screen screen;
+
+    public TransactionController(Keypad theKeypad, Screen theScreen) {
+	keypad = theKeypad;
+	screen = theScreen;
     }
-    
+
     public abstract int run();
 
     /**
-     * @return the transaction
+     * @return the keypad
      */
-    public Transaction getTransaction() {
-	return transaction;
+    public Keypad getKeypad() {
+	return keypad;
     }
 
     /**
-     * @param transaction the transaction to set
+     * @return the screen
      */
-    public void setTransaction(Transaction transaction) {
-	this.transaction = transaction;
+    public Screen getScreen() {
+	return screen;
     }
-    
+
 }

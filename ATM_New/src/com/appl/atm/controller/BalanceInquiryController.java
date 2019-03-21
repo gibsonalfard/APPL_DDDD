@@ -5,10 +5,9 @@
  */
 package com.appl.atm.controller;
 
-import com.appl.atm.model.Account;
 import com.appl.atm.model.BalanceInquiry;
-import com.appl.atm.model.BankDatabase;
 import com.appl.atm.model.Transaction;
+import com.appl.atm.view.Keypad;
 import com.appl.atm.view.Screen;
 
 /**
@@ -19,18 +18,18 @@ public class BalanceInquiryController extends TransactionController {
 
     private BalanceInquiry transaction;
 
-    public BalanceInquiryController(Transaction theTransaction) {
-	super(theTransaction);
-	transaction = (BalanceInquiry) getTransaction();
+    public BalanceInquiryController(Transaction theTransaction, Keypad theKeypad, Screen theScreen) {
+	super(theKeypad, theScreen);
+	transaction = (BalanceInquiry) theTransaction;
     }
+
 
     @Override
     public int run() {
-	Account account = getBankDatabase().getAccount(getAccountNumber());
 	Screen screen = getScreen();
 
-	double availableBalance = account.getAvailableBalance();
-	double totalBalance = account.getTotalBalance();
+	double availableBalance = transaction.getAvailableBalance();
+	double totalBalance = transaction.getTotalBalance();
 
 	screen.displayMessage("\nBalance Information:\n");
 	screen.displayMessage(" - Available balance\t: ");
@@ -40,21 +39,6 @@ public class BalanceInquiryController extends TransactionController {
 	screen.displayMessage("\n");
 	
 	return 0;
-    }
-    
-    private int getAccountNumber()
-    {
-	return transaction.getAccountNumber();
-    }
-    
-    private Screen getScreen()
-    {
-	return transaction.getScreen();
-    }
-    
-    private BankDatabase getBankDatabase()
-    {
-	return transaction.getBankDatabase();
     }
     
 }
