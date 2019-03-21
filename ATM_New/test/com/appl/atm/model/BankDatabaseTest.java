@@ -56,7 +56,7 @@ public class BankDatabaseTest {
          this.accountNumber = 4321;
          this.accountPasswd = 5678;
          
-         assertNotEquals("Akun Terbaca",1,bankDatabase.authenticateUser(accountNumber, accountPasswd));
+         assertEquals("Akun Terbaca",2,bankDatabase.authenticateUser(accountNumber, accountPasswd));
          
          this.accountNumber = 8765;
          assertEquals("Akun tidak terbaca", 1, bankDatabase.authenticateUser(accountNumber, accountPasswd));
