@@ -5,6 +5,7 @@
  */
 package com.appl.atm.model;
 
+import org.easymock.EasyMock;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,14 +19,20 @@ import static org.junit.Assert.*;
  */
 public class WithdrawalTest {
     BankDatabase bankDatabase;
+    Withdrawal withdrawal;
+    CashDispenser cashDispenser;
     
     int accountNumber = 1234;
     int accountPasswd = 4321;
+    int expectedSetAmount = 1400;
+    int amountSet = 200;
     double expectedBalance = 1200;
     double debitAmount = 20;
     
     public WithdrawalTest() {
         bankDatabase = new BankDatabase();
+        cashDispenser = new CashDispenser();
+        withdrawal = new Withdrawal(accountNumber, bankDatabase, cashDispenser);
     }
     
 //    @BeforeClass
@@ -71,5 +78,13 @@ public class WithdrawalTest {
          
          assertEquals("Balance Tidak Boleh Minus",0,
                  bankDatabase.getAccount(accountNumber).getTotalBalance(),0);
+     }
+     @Test
+     public void testSetAmount(){
+         int amount = this.amountSet;
+//     Withdrawal withdrawal = EasyMock.createMock(Withdrawal.class);
+//     assert Withdrawal
+          withdrawal.setAmount(amount);
+          assertEquals(amount, withdrawal.getAmount());
      }
 }
