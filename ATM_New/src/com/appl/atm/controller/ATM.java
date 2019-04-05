@@ -58,7 +58,7 @@ public class ATM {
     }
 
     // attempts to authenticate user against database
-    private void authenticateUser() {
+    public void authenticateUser() { //tadinya private, diubah demi kepentingan TEST
 	screen.displayMessage("Please enter your account number\t: ");
 	int accountNumber = keypad.getInput(); // input account number
 	screen.displayMessage("Enter your PIN\t\t\t\t: "); // prompt for PIN
@@ -78,7 +78,7 @@ public class ATM {
     }
 
     // display the main menu and perform transactions
-    private void performTransactions() {
+    public void performTransactions() { //tadinya private, diubah demi kepentingan TEST
 	// local variable to store transaction currently being processed
 	Transaction currentTransaction = null;
 	TransactionController currentTransactionController = null;
@@ -133,7 +133,7 @@ public class ATM {
     }
 
     // display the main menu and return an input selection
-    private int displayMainMenu() {
+    public int displayMainMenu() { //tadinya private, diubah demi kepentingan TEST
 	screen.displayMessageLine("\nMain menu:");
 	screen.displayMessageLine("1 - View my balance");
 	screen.displayMessageLine("2 - Withdraw cash");
@@ -143,7 +143,7 @@ public class ATM {
 	return keypad.getInput(); // return user's selection
     }
 
-    private Transaction createTransaction(int type) {
+    public Transaction createTransaction(int type) { //tadinya private, diubah demi kepentingan TEST
 	Transaction temp = null;
 
 	switch (type) {
