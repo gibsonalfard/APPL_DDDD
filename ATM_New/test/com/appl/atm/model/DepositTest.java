@@ -8,9 +8,8 @@ package com.appl.atm.model;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
+import static org.mockito.Matchers.isA;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -26,9 +25,7 @@ public class DepositTest {
     private final BankDatabase bankDatabase = Mockito.spy( new BankDatabase());
     private final DepositSlot depositSlot = Mockito.spy( new DepositSlot());
     private final double amount = 135;
-    
-    Account account = Mockito.mock(Account.class);
-    @InjectMocks
+    private final Account account = Mockito.mock(Account.class);
     private final Deposit victim = Mockito.spy( new Deposit(this.accountNumber, this.bankDatabase, this.depositSlot));
     
     public DepositTest() {
@@ -44,7 +41,8 @@ public class DepositTest {
     
     @Test
     public void testExecute ()
-    {   
+    { 
+        doReturn(this.account).when(this.bankDatabase).getAccount(isA(int.class));
         assertEquals("Execute should return 1 when envelope IS received.\n", 1, this.victim.execute());
         doReturn(false).when(this.depositSlot).isEnvelopeReceived();
         assertEquals("Execute should return 2 when envelope IS NOT received.\n", 2, this.victim.execute());
