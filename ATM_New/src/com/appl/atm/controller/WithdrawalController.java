@@ -24,7 +24,6 @@ public class WithdrawalController extends TransactionController {
 	transaction = (Withdrawal) theTransaction;
     }
 
-
     @Override
     public int run() {
 	int amount = displayMenuOfAmounts();
