@@ -29,27 +29,5 @@ public class BankDatabase {
             }
         } 
         return null; // if no matching account was found, return null
-    }
-    
-    public int authenticateUser(int userAccountNumber, int userPIN)
-    {
-	Account userAccount = getAccount(userAccountNumber);
-	
-	if(userAccount != null)
-	{
-	    if(userAccount.getPin() == userPIN)
-	    {
-		return 1;
-	    }
-	    else
-	    {
-		return 2;
-	    }
-	}
-	else
-	{
-	    return 2;
-	}
-    }
-   
+    }   
 }
