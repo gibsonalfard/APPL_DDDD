@@ -15,8 +15,8 @@ import com.appl.atm.view.Screen;
  */
 public abstract class TransactionController {
 
-    private Keypad keypad;
-    private Screen screen;
+    private final Keypad keypad;
+    private final Screen screen;
 
     public TransactionController(Keypad theKeypad, Screen theScreen) {
 	keypad = theKeypad;

@@ -16,7 +16,7 @@ import com.appl.atm.view.Screen;
  */
 public class BalanceInquiryController extends TransactionController {
 
-    private BalanceInquiry transaction;
+    private final BalanceInquiry transaction;
 
     public BalanceInquiryController(Transaction theTransaction, Keypad theKeypad, Screen theScreen) {
 	super(theKeypad, theScreen);

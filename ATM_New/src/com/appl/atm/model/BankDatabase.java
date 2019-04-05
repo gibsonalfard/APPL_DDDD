@@ -13,10 +13,10 @@ import java.util.ArrayList;
  */
 public class BankDatabase {
     
-    private ArrayList<Account> accounts; // array of Accounts
+    private final ArrayList<Account> accounts; // array of Accounts
     
     public BankDatabase() {
-        accounts = new ArrayList<Account>();
+        accounts = new ArrayList<>();
 	accounts.add(new Account(1234, 4321, 1000.0, 1200.0));
 	accounts.add(new Account(8765, 5678, 200.0, 200.0));
     }

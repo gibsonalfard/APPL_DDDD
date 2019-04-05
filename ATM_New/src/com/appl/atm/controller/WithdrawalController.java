@@ -17,7 +17,7 @@ import com.appl.atm.view.Screen;
  */
 public class WithdrawalController extends TransactionController {
 
-    private Withdrawal transaction;
+    private final Withdrawal transaction;
 
     public WithdrawalController(Transaction theTransaction, Keypad theKeypad, Screen theScreen) {
 	super(theKeypad, theScreen);
