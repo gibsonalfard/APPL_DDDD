@@ -9,30 +9,15 @@ package com.appl.atm.model;
  *
  * @author Annazar
  */
-public class Account {
-    
+public abstract class Account {
+
     private int accountNumber; // account number
     private int pin; // PIN for authentication
-    private double availableBalance; // funds available for withdrawal
-    private double totalBalance; // funds available & pending deposits
 
     // Account constructor initializes attributes
-    public Account(int theAccountNumber, int thePIN, 
-	double theAvailableBalance, double theTotalBalance) {
-
-	accountNumber = theAccountNumber;
-	pin = thePIN;
-	availableBalance = theAvailableBalance;
-	totalBalance = theTotalBalance;
-    } 
-
-    public void credit(double amount) {
-	totalBalance += amount;
-    }
-
-    public void debit(double amount) {
-	availableBalance -= amount;
-	totalBalance -= amount;
+    public Account(int theAccountNumber, int thePIN) {
+        accountNumber = theAccountNumber;
+        pin = thePIN;
     }
 
     /**
@@ -63,32 +48,18 @@ public class Account {
         this.pin = pin;
     }
 
-    /**
-     * @return the availableBalance
-     */
-    public double getAvailableBalance() {
-        return availableBalance;
-    }
+    public abstract void credit(double amount);
 
-    /**
-     * @param availableBalance the availableBalance to set
-     */
-    public void setAvailableBalance(double availableBalance) {
-        this.availableBalance = availableBalance;
-    }
+    public abstract void debit(double amount);
+
+    public abstract double getAvailableBalance();
 
     /**
      * @return the totalBalance
      */
-    public double getTotalBalance() {
-        return totalBalance;
-    }
+    public abstract double getTotalBalance();
 
     /**
-     * @param totalBalance the totalBalance to set
+     * @return the availableBalance
      */
-    public void setTotalBalance(double totalBalance) {
-        this.totalBalance = totalBalance;
-    }
-    
 }

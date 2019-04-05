@@ -71,6 +71,7 @@ public class ATM {
         // check whether authentication succeeded
         if (userAuthenticated == 1) {
             currentAccountNumber = accountNumber; // save user's account #
+            screen.displayMessageLine("\nHello "+bankDatabase.getAccount(accountNumber).getClass().getSimpleName());
         } else {
             screen.displayMessageLine(
                     "Invalid account number or PIN. Please try again.\n");
