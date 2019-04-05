@@ -5,10 +5,10 @@
  */
 package com.appl.atm.model;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -16,15 +16,19 @@ import static org.junit.Assert.*;
  */
 public class BalanceInquiryTest {
     
+    BankDatabase bankDatabaseMock;
+    BalanceInquiry balanceInquiryMock;
+    Account accountMock;
+    
+    int accountNumber = 1234;
+    int expectedExecuteReturnValue = 0;
+    double expectedAvailableBalance = 1000.0;
+    double expectedTotalBalance = 1200.0;
+    
     public BalanceInquiryTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
+        bankDatabaseMock = Mockito.mock(BankDatabase.class);
+        balanceInquiryMock = new BalanceInquiry(accountNumber, bankDatabaseMock);
+        accountMock = Mockito.mock(Account.class);
     }
 
     /**
@@ -32,13 +36,9 @@ public class BalanceInquiryTest {
      */
     @Test
     public void testExecute() {
-        System.out.println("execute");
-        BalanceInquiry instance = null;
-        int expResult = 0;
-        int result = instance.execute();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+            assertEquals("Execute Harus Mengembalikan 0", 
+                    expectedExecuteReturnValue, balanceInquiryMock.execute(),0);
+            
     }
 
     /**
@@ -46,13 +46,15 @@ public class BalanceInquiryTest {
      */
     @Test
     public void testGetAvailableBalance() {
-        System.out.println("getAvailableBalance");
-        BalanceInquiry instance = null;
-        double expResult = 0.0;
-        double result = instance.getAvailableBalance();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //Stubbing
+        when(accountMock.getAccountNumber()).thenReturn(1234);
+        when(accountMock.getAvailableBalance()).thenReturn(1000.0);
+        when(bankDatabaseMock.getAccount(accountMock.getAccountNumber())).
+                thenReturn(accountMock);
+
+        //Assert
+          assertEquals("Available Balance yang Diambil Tidak Sesuai" ,
+                  this.expectedAvailableBalance, balanceInquiryMock.getAvailableBalance(),0);
     }
 
     /**
@@ -60,13 +62,15 @@ public class BalanceInquiryTest {
      */
     @Test
     public void testGetTotalBalance() {
-        System.out.println("getTotalBalance");
-        BalanceInquiry instance = null;
-        double expResult = 0.0;
-        double result = instance.getTotalBalance();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //Stubbing
+        when(accountMock.getAccountNumber()).thenReturn(1234);
+        when(accountMock.getTotalBalance()).thenReturn(1200.0);
+        when(bankDatabaseMock.getAccount(accountMock.getAccountNumber())).
+                thenReturn(accountMock);
+        
+        //Assert
+        assertEquals("Total Balance yang Diambil Tidak Sesuai", 
+                    expectedTotalBalance, balanceInquiryMock.getTotalBalance(),0);
     }
     
 }

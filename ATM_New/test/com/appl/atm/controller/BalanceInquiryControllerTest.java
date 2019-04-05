@@ -5,10 +5,9 @@
  */
 package com.appl.atm.controller;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.mockito.Mockito;
 
 /**
  *
@@ -16,29 +15,21 @@ import static org.junit.Assert.*;
  */
 public class BalanceInquiryControllerTest {
     
-    public BalanceInquiryControllerTest() {
+    BalanceInquiryController balanceInquiryControllerMock;
+    
+    int expectedRunReturnValue = 0;
+    
+    public BalanceInquiryControllerTest() {        
+        balanceInquiryControllerMock = Mockito.mock(BalanceInquiryController.class);
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
     /**
      * Test of run method, of class BalanceInquiryController.
      */
     @Test
     public void testRun() {
-        System.out.println("run");
-        BalanceInquiryController instance = null;
-        int expResult = 0;
-        int result = instance.run();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("Run Harus Mengembalikan 0", 
+                this.expectedRunReturnValue, this.balanceInquiryControllerMock.run(), 0);
     }
     
 }
